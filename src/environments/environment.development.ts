@@ -1,0 +1,7 @@
+export const environment = {
+     production:false,
+    api:'https://jsonplaceholder.typicode.com/posts',
+    apiGetAllUser:'http://localhost:8080/api/users',
+    apiCreateUser:'http://localhost:8080/api/users/add',
+
+};

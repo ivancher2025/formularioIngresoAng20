@@ -1,0 +1,35 @@
+<br>
+<form #forumForm="ngForm" (ngSubmit)="onSubmit(forumUser)">
+   <br>
+   <div>
+     <label for="title">
+        Nombre:<input type= "text" name= "title" [(ngModel)]="forumUser.name" required >
+    </label>
+    <br>
+    <br>
+    <label>
+       Dirección: <input type= "text" name= "comment" [(ngModel)]="forumUser.direccion" >
+    </label>
+     <br>
+    <br>
+    <label>
+       Teléfono: <input type= "text" name= "comment" [(ngModel)]="forumUser.phone" >
+    </label>
+    <br>
+    <input type= "submit"  value= "Save" class="boton">
+   </div>
+         <br>
+         <div *ngIf="forumUsers.length > 0">
+            <H2>Usuarios</H2>
+            <li *ngFor="let forumU of forumUsers">
+                
+                <strong>{{forumU.id}} Nombre:</strong> {{forumU.name}} <br> 
+                <strong>Dirección:</strong> {{forumU.direccion}}<br> 
+                <strong>Teléfono:</strong> {{forumU.phone}}<br> 
+                
+            </li>
+
+
+         </div>
+</form>
+

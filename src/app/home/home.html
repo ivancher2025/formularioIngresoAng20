@@ -1,0 +1,26 @@
+<br>
+<form #forumForm="ngForm" (ngSubmit)="onSubmit(forum)">
+   <br>
+   <div>
+     <label for="title">
+        Titulo:<input type= "text" name= "title" [(ngModel)]="forum.title" required >
+    </label>
+    <br>
+    <br>
+    <label>
+        Comentario: <input type= "text" name= "comment" [(ngModel)]="forum.body" >
+    </label>
+    <br>
+    <input type= "submit"  value= "Save" class="boton">
+   </div>
+         <br>
+         <div *ngIf="forums.length > 0">
+            <H2>Forums</H2>
+            <li *ngFor="let forum of forums">
+                <strong>{{forum.id}}) {{forum.title}}</strong><br> {{forum.body}}
+            </li>
+
+
+         </div>
+</form>
+
