@@ -72,16 +72,8 @@ getForumUsers():Observable<foruUser[]>{
      });
   }
 
-  deleteForumUser(forumUser:foruUser){
-     this.http.delete<void>(`${this.apiDeleteUserById}/${forumUser.id}`).subscribe({
-                next: data => {
-                    this.status = 'Delete successful';
-                },
-                error: error => {
-                    this.errorMessage = error.message;
-                    console.error('There was an error!', error);
-                }
-            });
+  deleteForumUser(forumUser:foruUser):Observable<foruUser[]>{
+    return this.http.delete<foruUser[]>(`${this.apiDeleteUserById}/${forumUser.id}`);
   }
 
 

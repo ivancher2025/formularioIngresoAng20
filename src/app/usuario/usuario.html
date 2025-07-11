@@ -29,7 +29,32 @@
       
     </div>
     <br>
- 
+    <table *ngIf="forumUsers.length > 0" border="1" style="margin-top: 2rem;">
+        <caption class="titulo">
+            Tabla de Usuarios
+        </caption>
+        <thead>
+            <tr>
+                <th scope="col" class="tituloTabla">Nombre</th>
+                <th scope="col" class="tituloTabla">Dirección</th>
+                <th scope="col" class="tituloTabla">Teléfono</th>
+                <th scope="col" class="tituloTabla">Editar</th>
+                <th scope="col" class="tituloTabla">Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let forumU of forumUsers; let i = index">
+                <td>{{ forumU.name }}</td>
+                <td>{{ forumU.direccion }}</td>
+                <td>{{ forumU.phone }}</td>
+                <td><button (click)="updateUser(forumU)" >Actualizar</button></td>
+                <td><button (click)="removeUser(forumU)">Eliminar</button></td>
+                
+            </tr>
+        </tbody>
+        <tfoot>
+    </table>
+
 
 
 

@@ -67,11 +67,11 @@ export class Usuario {
 
   removeUser(forumUser: foruUser) {
     console.log('Elimina registro id:', forumUser.id);
-    this.forumService.deleteForumUser(forumUser);
-    this.forumService.getForumUsers().subscribe(data => {
+    this.forumService.deleteForumUser(forumUser).subscribe(data=>{this.forumUsers = data;});
+  /*  this.forumService.getForumUsers().subscribe(data => {
       this.forumUsers = data;
       console.log("Usuarios cargados:: ", data);
-    });
+    });*/
   };
 
   updateUser(forumUser: foruUser) {
