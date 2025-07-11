@@ -11,6 +11,7 @@ import { foruUser } from '../app';
   styleUrl: './usuario.scss'
 })
 export class Usuario {
+    estado:string='';
 constructor(private forumService: Forums) { }
 
 forumUser: foruUser = {
@@ -32,12 +33,23 @@ forumUsers:foruUser[]=[];
 
  onSubmit(forumUser: foruUser) {
   console.log("Hola Usuario");
-    forumUser.userId=1;
-    forumUser.id=this.forumUsers.length +1;
+    console.log("name: ",this.forumUser.name);
+    console.log("dire: ",this.forumUser.direccion);
+    console.log("tfn: ",this.forumUser.phone);
     this.forumService.addForumUser(forumUser).subscribe(newForm => {
       this.forumUsers.unshift(newForm);
       console.log("New FOrum add: ",newForm);
     })
+  }
+
+
+  removeUser(forumUser: foruUser) {
+    console.log('Elimina registro id:',forumUser.id);
+    this.forumService.deleteForumUser(forumUser);
+    this.forumService.getForumUsers().subscribe(data => {
+      this.forumUsers = data;
+      console.log("Forums loaded: ", data);
+    });
   }
 
 }

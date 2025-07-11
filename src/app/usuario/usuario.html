@@ -1,35 +1,65 @@
 <br>
-<form #forumForm="ngForm" (ngSubmit)="onSubmit(forumUser)">
-   <br>
-   <div>
-     <label for="title">
-        Nombre:<input type= "text" name= "title" [(ngModel)]="forumUser.name" required >
-    </label>
+<form #forumForm="ngForm">
     <br>
+    <div>
+        <label for="title">
+            Nombre:<input type="text" name="title" [(ngModel)]="forumUser.name" required>
+        </label>
+        <br>
+        <br>
+        <label>
+            Dirección: <input type="text" name="comment" [(ngModel)]="forumUser.direccion">
+        </label>
+        <br>
+        <br>
+        <label>
+            Teléfono: <input type="text" name="comment" [(ngModel)]="forumUser.phone">
+        </label>
+        <br>
+        <br>
+        <button style="text-align: center;" (click)="onSubmit(forumUser)">Guardar</button>
+      
+    </div>
     <br>
-    <label>
-       Dirección: <input type= "text" name= "comment" [(ngModel)]="forumUser.direccion" >
-    </label>
-     <br>
-    <br>
-    <label>
-       Teléfono: <input type= "text" name= "comment" [(ngModel)]="forumUser.phone" >
-    </label>
-    <br>
-    <input type= "submit"  value= "Save" class="boton">
-   </div>
-         <br>
-         <div *ngIf="forumUsers.length > 0">
-            <H2>Usuarios</H2>
-            <li *ngFor="let forumU of forumUsers">
+    <table *ngIf="forumUsers.length > 0" border="1" style="margin-top: 2rem;">
+        <caption class="titulo">
+            Tabla de Usuarios
+        </caption>
+        <thead>
+            <tr>
+                <th scope="col" class="tituloTabla">Nombre</th>
+                <th scope="col" class="tituloTabla">Dirección</th>
+                <th scope="col" class="tituloTabla">Teléfono</th>
+                <th scope="col" class="tituloTabla">Editar</th>
+                <th scope="col" class="tituloTabla">Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let forumU of forumUsers; let i = index">
+                <td>{{ forumU.name }}</td>
+                <td>{{ forumU.direccion }}</td>
+                <td>{{ forumU.phone }}</td>
+                <td><button >Actualizar</button></td>
+                <td><button (click)="removeUser(forumU)">Eliminar</button></td>
                 
-                <strong>{{forumU.id}} Nombre:</strong> {{forumU.name}} <br> 
-                <strong>Dirección:</strong> {{forumU.direccion}}<br> 
-                <strong>Teléfono:</strong> {{forumU.phone}}<br> 
-                
-            </li>
+            </tr>
+        </tbody>
+        <tfoot>
+    </table>
 
 
-         </div>
+
+
+    <div *ngIf="forumUsers.length > 0">
+        <H2>Usuarios</H2>
+        <li *ngFor="let forumU of forumUsers">
+
+            <strong>{{forumU.id}} Nombre:</strong> {{forumU.name}} <br>
+            <strong>Dirección:</strong> {{forumU.direccion}}<br>
+            <strong>Teléfono:</strong> {{forumU.phone}}<br>
+
+        </li>
+
+
+    </div>
 </form>
-
