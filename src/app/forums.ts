@@ -16,6 +16,7 @@ export class Forums {
  private readonly apiUrlGetAllUser = environment.apiGetAllUser;
  private readonly apiUrlCreateUser = environment.apiCreateUser;
  private readonly apiDeleteUserById = environment.apiDeleteUserById;
+ private readonly apiUpdateUser= environment.apiUpdateUser;
   private http=inject(HttpClient);
  private jsonHeaders = new HttpHeaders({'Content-Type':'application/json'});
   //constructor() { }
@@ -52,9 +53,21 @@ getForumUsers():Observable<foruUser[]>{
      });
   }
 
+   updateUser(forumUser:foruUser){
+        console.log("Inicia actualizacion ");
+     this.http.post<void>(`${this.apiUpdateUser}`,forumUser).subscribe({
+                next: data => {
+                    this.status = 'Actualización correcta';
+                },
+                error: error => {
+                    this.errorMessage = error.message;
+                    console.error('Error! en actualizar', error);
+                }
+            });
+  }
 
   updateForum(forum: forumPost):Observable<forumPost>{
-        return this.http.put<forumPost>(`${this.apiUrl}/${forum.id}`,forum,{
+        return this.http.put<forumPost>(`${this.apiUpdateUser}`,forum,{
       headers:this.jsonHeaders
      });
   }

@@ -1,52 +1,35 @@
 <br>
-<form #forumForm="ngForm">
+<form [formGroup]="profileForm">
     <br>
     <div>
+        <fieldset style="border: 1; width: 20%;" disabled>
+            <label>
+            Código:<input style="width: 20%;" type="text" name="title" formControlName="codigo"  >
+        </label>
+        </fieldset>
+        
+        <br>
+        <br>
         <label for="title">
-            Nombre:<input type="text" name="title" [(ngModel)]="forumUser.name" required>
+            Nombre:<input type="text" name="title" formControlName="nombre">
         </label>
         <br>
         <br>
         <label>
-            Dirección: <input type="text" name="comment" [(ngModel)]="forumUser.direccion">
+            Dirección: <input type="text" name="comment" formControlName="direcc">
         </label>
         <br>
         <br>
         <label>
-            Teléfono: <input type="text" name="comment" [(ngModel)]="forumUser.phone">
+            Teléfono: <input type="text" name="comment" formControlName="fono">
         </label>
         <br>
         <br>
-        <button style="text-align: center;" (click)="onSubmit(forumUser)">Guardar</button>
+        <button (click)="onSubmit()" [disabled]="!profileForm.valid" >Guardar</button>
       
     </div>
     <br>
-    <table *ngIf="forumUsers.length > 0" border="1" style="margin-top: 2rem;">
-        <caption class="titulo">
-            Tabla de Usuarios
-        </caption>
-        <thead>
-            <tr>
-                <th scope="col" class="tituloTabla">Nombre</th>
-                <th scope="col" class="tituloTabla">Dirección</th>
-                <th scope="col" class="tituloTabla">Teléfono</th>
-                <th scope="col" class="tituloTabla">Editar</th>
-                <th scope="col" class="tituloTabla">Eliminar</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let forumU of forumUsers; let i = index">
-                <td>{{ forumU.name }}</td>
-                <td>{{ forumU.direccion }}</td>
-                <td>{{ forumU.phone }}</td>
-                <td><button >Actualizar</button></td>
-                <td><button (click)="removeUser(forumU)">Eliminar</button></td>
-                
-            </tr>
-        </tbody>
-        <tfoot>
-    </table>
-
+ 
 
 
 
@@ -57,7 +40,8 @@
             <strong>{{forumU.id}} Nombre:</strong> {{forumU.name}} <br>
             <strong>Dirección:</strong> {{forumU.direccion}}<br>
             <strong>Teléfono:</strong> {{forumU.phone}}<br>
-
+              <td><button (click)="updateUser(forumU)" >Actualizar</button></td>
+                <td><button (click)="removeUser(forumU)">Eliminar</button></td>
         </li>
 
 
