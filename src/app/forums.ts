@@ -53,17 +53,8 @@ getForumUsers():Observable<foruUser[]>{
      });
   }
 
-   updateUser(forumUser:foruUser){
-        console.log("Inicia actualizacion ");
-     this.http.post<void>(`${this.apiUpdateUser}`,forumUser).subscribe({
-                next: data => {
-                    this.status = 'Actualización correcta';
-                },
-                error: error => {
-                    this.errorMessage = error.message;
-                    console.error('Error! en actualizar', error);
-                }
-            });
+   updateUser(forumUser:foruUser):Observable<foruUser[]>{
+     return this.http.post<foruUser[]>(`${this.apiUpdateUser}`,forumUser);
   }
 
   updateForum(forum: forumPost):Observable<forumPost>{
